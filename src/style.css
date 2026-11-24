@@ -41,6 +41,44 @@ main { padding: 1.5rem 2rem; }
 .carte img { width: 96px; height: 96px; }
 .carte h2 { margin: 0.5rem 0; text-transform: capitalize; font-size: 1.1rem; }
 
+.carte { cursor: pointer; }
+.carte:hover { transform: translateY(-2px); }
+
+/* Modale du palier 3 : fond assombri + fenêtre centrée */
+.fond-modale {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.modale {
+  position: relative;
+  background: var(--carte);
+  border-radius: 12px;
+  padding: 1.5rem 2rem;
+  min-width: 260px;
+  max-width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modale h2 { margin-top: 0; text-transform: capitalize; }
+.modale ul { padding-left: 1.2rem; }
+
+.fermer {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  border: none;
+  background: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
 .type {
   display: inline-block;
   margin: 0 0.15rem;

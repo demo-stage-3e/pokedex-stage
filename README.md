@@ -28,11 +28,16 @@ Modifie un fichier dans `src/` et enregistre : **la page se met à jour toute se
 | `src/App.vue` | La page principale (c'est là qu'on travaille) |
 | `src/components/PokemonCard.vue` | Une carte Pokémon |
 | `src/style.css` | Les couleurs et la mise en forme |
+| `src/router.js` | La liste des pages du site (une ligne par page) |
+| `src/Layout.vue` | Le menu en haut, présent sur toutes les pages |
+| `src/pages/` | Les pages de la chasse aux bugs |
+| `src/bugs/` | Les exercices de la chasse aux bugs |
 | `index.html` | Le point d'entrée (on y touche rarement) |
 
 ## Les paliers
 
-Dans `src/App.vue`, cherche les commentaires `PALIER` : chacun ajoute une fonctionnalité.
+Les consignes détaillées de chaque palier sont dans [PALIERS.md](PALIERS.md) (aperçu Markdown dans VS Code : clic droit, *Open Preview*).
+Les commentaires `PALIER` de `src/App.vue` disent la même chose.
 
 - [ ] **Palier 0** : changer le titre, les couleurs, le nombre de Pokémon (aucun JavaScript)
 - [ ] **Palier 1** : afficher la taille et le poids sur la carte (juste du HTML)
@@ -42,10 +47,21 @@ Dans `src/App.vue`, cherche les commentaires `PALIER` : chacun ajoute une foncti
 - [ ] **Bonus** : jeu « Qui est ce Pokémon ? »
 
 La grille de Pokémon est déjà faite : lis le code pour le comprendre !
-Les paliers sont guidés : le code à écrire est quasiment donné en commentaire dans `src/App.vue`.
+Les paliers sont guidés : le code à écrire est quasiment donné.
 Le but est de comprendre ce que chaque ligne fait.
 
 Pas besoin de tous les faire. Un palier terminé et bien compris vaut mieux que quatre à moitié copiés.
+
+## Chasse aux bugs
+
+Dans le menu, la page **Chasse aux bugs** propose des petits composants cassés à réparer, avec des indices progressifs.
+Les consignes sont dans [CHASSE-AUX-BUGS.md](CHASSE-AUX-BUGS.md).
+
+## Ajouter une page
+
+1. Crée un fichier dans `src/pages/`, par exemple `MaPage.vue`.
+2. Dans `src/router.js`, ajoute une ligne : `{ path: '/ma-page', component: MaPage }` (et l'`import` en haut).
+3. Dans `src/Layout.vue`, ajoute un lien : `<RouterLink to="/ma-page">Ma page</RouterLink>`.
 
 ## Quand ça ne marche pas
 1. Lis le message d'erreur : il dit souvent exactement quoi et où.
