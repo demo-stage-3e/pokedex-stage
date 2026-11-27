@@ -6,7 +6,7 @@ const URL_API = 'https://pokeapi.co/api/v2'
 
 class PokeApi {
   // Renvoie une liste de Pokémon avec leur nom et leurs types en français.
-  async chargerPokemons(limite = 20) {
+  async chargerPokemons(limite = 1000) {
     // 1) On demande la liste (nom + adresse de chaque Pokémon)
     const liste = await this.#lireJson(`${URL_API}/pokemon?limit=${limite}`)
 

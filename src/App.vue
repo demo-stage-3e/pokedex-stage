@@ -1,18 +1,26 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import PokemonCard from './components/PokemonCard.vue'
 import { pokeApi } from './services/PokeApi.js'
 
 // ref = une variable "réactive" : quand elle change, la page se met à jour toute seule.
 const pokemons = ref([])
 const chargement = ref(true)
+const recherche = ref('')
+const choisi = ref(null)
+
+const pokemonsAffiches = computed(() =>
+  pokemons.value.filter((p) =>
+    p.nomFr.toLowerCase().includes(recherche.value.toLowerCase())
+  )
+)
 
 // ============================================================
 // DÉJÀ FAIT : afficher une grille de Pokémon (lis-le pour le comprendre)
 // ============================================================
 async function chargerPokemons() {
   // Toute la complexité (appels à l'API, traductions...) est cachée dans le service
-  pokemons.value = await pokeApi.chargerPokemons(20)
+  pokemons.value = await pokeApi.chargerPokemons(1000)
   chargement.value = false
 }
 
@@ -80,12 +88,22 @@ onMounted(chargerPokemons) // lancé automatiquement à l'ouverture de la page
   <header>
     <h1>Mon Pokédex</h1>
   </header>
-
+  <input v-model="recherche" placeholder="Chercher un Pokémon" />
   <main>
     <p v-if="chargement">Chargement…</p>
-
     <div v-else class="grille">
-      <PokemonCard v-for="p in pokemons" :key="p.id" :pokemon="p" />
+      <PokemonCard v-for="p in pokemonsAffiches" :key="p.id" :pokemon="p" @click="choisi = p"/>
     </div>
+    <div v-if="choisi" class="fond-modale" @click="choisi = null">
+  <section class="modale" @click.stop>
+    <button class="fermer" @click="choisi = null">✕</button>
+    <h2>{{ choisi.nomFr }}</h2>
+    <ul>
+      <li v-for="s in choisi.stats" :key="s.stat.name">
+        {{ s.stat.name }} : {{ s.base_stat }}
+      </li>
+    </ul>
+  </section>
+</div>
   </main>
 </template>
