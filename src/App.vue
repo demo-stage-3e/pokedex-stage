@@ -20,7 +20,7 @@ const pokemonsAffiches = computed(() =>
 // ============================================================
 async function chargerPokemons() {
   // Toute la complexité (appels à l'API, traductions...) est cachée dans le service
-  pokemons.value = await pokeApi.chargerPokemons(1000)
+  pokemons.value = await pokeApi.chargerPokemons(1350)
   chargement.value = false
 }
 
